@@ -19,3 +19,7 @@ void MinHeap::printHeap() {
         heap_arr[i + 1].printEntry();
     }
 }
+
+int MinHeap::getSize() {
+    return size;
+}

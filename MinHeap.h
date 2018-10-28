@@ -3,7 +3,6 @@
 class MinHeap {
     public:
         MinHeap();
-        ~MinHeap();
         void insert(Entry e);
         void replaceMin(std::string new_word);
         void printHeap();

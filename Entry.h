@@ -2,8 +2,8 @@
 
 class Entry {
     public:
+        Entry();
         Entry(std::string word);
-        ~Entry();
         void increment();
         void replace(std::string new_word);
     private:

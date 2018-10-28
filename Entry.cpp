@@ -1,5 +1,10 @@
 #include "Entry.h"
 
+Entry::Entry() {
+    this->word = "stub";
+    frequency = 0;
+}
+
 Entry::Entry(std::string word) {
     this->word = word;
     frequency = 1;

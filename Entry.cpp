@@ -17,3 +17,7 @@ void Entry::increment() {
 void Entry::replace(std::string new_word) {
     this->word = new_word;
 }
+
+void Entry::printEntry() {
+    std::cout << "Word: " << this->word << ", Frequency: " << this->frequency << std::endl;
+}

@@ -1,5 +1,4 @@
 #include "MinHeap.h"
-#include <iostream>
 
 MinHeap::MinHeap() {
     heap_arr = new Entry[16];
@@ -17,6 +16,6 @@ void MinHeap::replaceMin(std::string new_word) {
 
 void MinHeap::printHeap() {
     for(int i = 0; i < size; i++) {
-        
+        heap_arr[i + 1].printEntry();
     }
 }

@@ -4,7 +4,7 @@ class HashElem {
     public: 
         HashElem();
         HashElem(int index, std::string word);
-        void setNext(HashElem h);
+        void setNext(HashElem* h);
         int getIndex();
         std::string getWord();
         HashElem* getNext();

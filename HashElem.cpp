@@ -13,8 +13,8 @@ HashElem::HashElem(int index, std::string word) {
     this->next = NULL;
 }
 
-void HashElem::setNext(HashElem h) {
-    this->next = &h;
+void HashElem::setNext(HashElem* h) {
+    this->next = h;
 }
 
 int HashElem::getIndex() {

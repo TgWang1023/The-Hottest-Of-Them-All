@@ -11,11 +11,23 @@ int hashIdx(std::string word) {
 
 HashTable::HashTable() {
     table = new HashElem*[20];
+    for(int i = 0; i < 20; i++) {
+        table[i] = NULL;
+    }
 }
 
 void HashTable::insert(std::string word, int index) {
     int idx = hashIdx(word);
-    
+    HashElem* h = new HashElem(index, word);
+    if (table[idx] == NULL) {
+        table[idx] = h;
+    } else {
+        HashElem* runner = table[idx];
+        while(runner->getNext() != NULL) {
+            runner = runner->getNext();
+        }
+        runner->setNext(h);
+    }
 }
 
 void HashTable::delEntry(std::string word) {

@@ -10,6 +10,6 @@ class MinHeap {
         int getSize();
         int alreadyExist(std::string new_word); // Will be removed after implementing hash table!!!
     private:
-        Entry *heap_arr;
+        Entry* heap_arr;
         int size;
 };

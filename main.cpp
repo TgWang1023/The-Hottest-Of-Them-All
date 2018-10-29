@@ -4,6 +4,14 @@
 
 using namespace std;
 
+string convertToLower(string word) {
+    string result = word;
+    for(int i = 0; i < result.length(); i++) {
+        result[i] = tolower(result[i]);
+    }
+    return result;
+}
+
 int main(int argc, const char* argv[]) {
     if (argc == 1) {
         cout << "Please enter the name of the file as an argument" << endl;
@@ -20,10 +28,12 @@ int main(int argc, const char* argv[]) {
         cout << "Successfully opened file." << endl;
         string word;
         while(word_file >> word) {
+            word = convertToLower(word);
             if (word_heap.getSize() >= 15) {
                 word_heap.replaceMin(word);
             } else {
-                word_heap.insert(Entry(word));
+                Entry newEntry = Entry(word);
+                word_heap.insert(newEntry);
             }
         }
     } else {

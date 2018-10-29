@@ -8,6 +8,8 @@ class Entry {
         void increment();
         void replace(std::string new_word);
         void printEntry();
+        std::string getWord();
+        int getFreq();
     private:
         std::string word;
         int frequency;

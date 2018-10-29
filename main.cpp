@@ -13,13 +13,18 @@ int main(int argc, const char* argv[]) {
         exit(0);
     }
 
+    MinHeap word_heap;
     fstream word_file;
     word_file.open(argv[1]);
     if (word_file.is_open()) {
         cout << "Successfully opened file." << endl;
         string word;
         while(word_file >> word) {
-            cout << word << endl;
+            if (word_heap.getSize() >= 15) {
+                word_heap.replaceMin(word);
+            } else {
+                word_heap.insert(Entry(word));
+            }
         }
     } else {
         cout << "Unable to open this file." << endl;
@@ -43,7 +48,8 @@ int main(int argc, const char* argv[]) {
 
         switch(choice) {
             case '1':
-                cout << "Case 1" << endl;
+                cout << "-------------------------" << endl;
+                word_heap.printHeap();
                 break;
             case '2':
                 cout << "Case 2" << endl;

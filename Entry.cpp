@@ -21,3 +21,11 @@ void Entry::replace(std::string new_word) {
 void Entry::printEntry() {
     std::cout << "Word: " << this->word << ", Frequency: " << this->frequency << std::endl;
 }
+
+std::string Entry::getWord() {
+    return word;
+}
+
+int Entry::getFreq() {
+    return frequency;
+}

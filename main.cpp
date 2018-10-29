@@ -1,11 +1,34 @@
+#include <fstream>
 #include "MinHeap.h"
 #include "HashTable.h"
 
 using namespace std;
 
-int main() {
+int main(int argc, const char* argv[]) {
+    if (argc == 1) {
+        cout << "Please enter the name of the file as an argument" << endl;
+        exit(0);
+    } else if (argc > 2) {
+        cout << "Please only enter the name of the file as an argument" << endl;
+        exit(0);
+    }
+
+    fstream word_file;
+    word_file.open(argv[1]);
+    if (word_file.is_open()) {
+        cout << "Successfully opened file." << endl;
+        string word;
+        while(word_file >> word) {
+            cout << word << endl;
+        }
+    } else {
+        cout << "Unable to open this file." << endl;
+        exit(0);
+    }
+
     cout << "\n\n\nThe Hottest Of Them All" << endl;
     cout << "Please select the action you would like to perform:" << endl;
+
     while(1) {
         cout << "-------------------------" << endl;
         cout << "1: Print Heap" << endl;
@@ -30,6 +53,7 @@ int main() {
                 break;
             case '0':
                 cout << "Goodbye" << endl;
+                word_file.close();
                 exit(0);
             default:
                 cout << "Please enter 1, 2 or 3 to perform an action or 0 to quit" << endl;

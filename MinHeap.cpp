@@ -1,11 +1,12 @@
 #include "MinHeap.h"
 
+
 MinHeap::MinHeap() {
     heap_arr = new Entry[16];
     size = 0;
 }
 
-int MinHeap::insert(Entry e, int exists) {
+int MinHeap::insert(Entry e, int exists, HashTable &h) {
     if(exists > 0) {
         heap_arr[exists].increment();
         return holdInvariant(exists);
@@ -17,6 +18,7 @@ int MinHeap::insert(Entry e, int exists) {
                 Entry temp = heap_arr[runner / 2];
                 heap_arr[runner / 2] = heap_arr[runner];
                 heap_arr[runner] = temp;
+                h.changeContent(heap_arr[runner].getWord(), runner);
                 runner = runner / 2;
             } else {
                 break;

@@ -1,3 +1,6 @@
+#ifndef _HASHTABLE_H_
+#define _HASHTABLE_H_
+
 #include <string>
 #include "HashElem.h"
 
@@ -11,4 +14,7 @@ class HashTable {
         void printHashTable();
     private:
         HashElem** table;
+        int size;
 };
+
+#endif 

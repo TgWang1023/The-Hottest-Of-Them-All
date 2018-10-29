@@ -2,9 +2,6 @@
 #include "HashElem.h"
 
 HashElem::HashElem() {
-    this->index = -1;
-    this->word = "stub";
-    this->next = NULL;
 }
 
 HashElem::HashElem(int index, std::string word) {

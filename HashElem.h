@@ -1,3 +1,6 @@
+#ifndef _HASHELEM_H_
+#define _HASHELEM_H_
+
 #include <string>
 
 class HashElem {
@@ -14,3 +17,5 @@ class HashElem {
         std::string word;
         HashElem* next;
 };
+
+#endif

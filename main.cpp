@@ -41,7 +41,7 @@ int main(int argc, const char* argv[]) {
                 }
             } else {
                 Entry newEntry = Entry(word);  
-                int resultIdx = word_heap.insert(newEntry, found);
+                int resultIdx = word_heap.insert(newEntry, found, idx_table);
                 if(found > 0) {
                     idx_table.changeContent(word, resultIdx);
                 } else {

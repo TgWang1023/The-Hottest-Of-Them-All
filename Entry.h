@@ -1,3 +1,6 @@
+#ifndef _ENTRY_H_
+#define _ENTRY_H_
+
 #include <string>
 #include <iostream>
 
@@ -14,3 +17,5 @@ class Entry {
         std::string word;
         int frequency;
 };
+
+#endif

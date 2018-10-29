@@ -32,7 +32,20 @@ void HashTable::insert(std::string word, int index) {
 
 void HashTable::delEntry(std::string word) {
     int idx = hashIdx(word);
-    
+    if (table[idx] == NULL) {
+        return;
+    } else {
+        HashElem* prev_runner = table[idx];
+        HashElem* runner = table[idx];
+        while(runner->getNext() != NULL) {
+            runner = runner->getNext();
+            if(runner->getWord() == word) {
+                prev_runner->setNext(runner->getNext());
+                break;
+            }
+            prev_runner = prev_runner->getNext();
+        }
+    }
 }
 
 void HashTable::printHashTable() {

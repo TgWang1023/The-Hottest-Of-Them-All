@@ -17,6 +17,10 @@ void HashElem::setNext(HashElem* h) {
     this->next = h;
 }
 
+void HashElem::setIndex(int index) {
+    this->index = index;
+}
+
 int HashElem::getIndex() {
     return index;
 }

@@ -16,6 +16,22 @@ HashTable::HashTable() {
     }
 }
 
+int HashTable::searchTable(std::string word) {
+    int idx = hashIdx(word);
+    if (table[idx] == NULL) {
+        return -1;
+    } else {
+        HashElem* runner = table[idx];
+        while(runner->getNext() != NULL) {
+            runner = runner->getNext();
+            if(runner->getWord() == word) {
+                return runner->getIndex();
+            }
+        }
+    }
+    return -1;
+}
+
 void HashTable::insert(std::string word, int index) {
     int idx = hashIdx(word);
     HashElem* h = new HashElem(index, word);
@@ -44,6 +60,22 @@ void HashTable::delEntry(std::string word) {
                 break;
             }
             prev_runner = prev_runner->getNext();
+        }
+    }
+}
+
+void HashTable::changeContent(std::string word, int index) {
+    int idx = hashIdx(word);
+    if (table[idx] == NULL) {
+        return;
+    } else {
+        HashElem* runner = table[idx];
+        while(runner->getNext() != NULL) {
+            runner = runner->getNext();
+            if(runner->getWord() == word) {
+                runner->setIndex(index);
+                break;
+            }
         }
     }
 }

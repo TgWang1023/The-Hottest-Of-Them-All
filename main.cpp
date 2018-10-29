@@ -22,6 +22,7 @@ int main(int argc, const char* argv[]) {
     }
 
     MinHeap word_heap;
+    HashTable idx_table;
     fstream word_file;
     word_file.open(argv[1]);
     if (word_file.is_open()) {
@@ -29,11 +30,23 @@ int main(int argc, const char* argv[]) {
         string word;
         while(word_file >> word) {
             word = convertToLower(word);
+            int found = idx_table.searchTable(word);
             if (word_heap.getSize() >= 15) {
-                word_heap.replaceMin(word);
+                int resultIdx = word_heap.replaceMin(word, found);
+                if(found > 0) {
+                    idx_table.changeContent(word, word_heap.replaceMin(word, resultIdx));
+                } else {
+                    idx_table.delEntry(word_heap.getMin());
+                    idx_table.insert(word, word_heap.replaceMin(word, resultIdx));
+                }
             } else {
-                Entry newEntry = Entry(word);
-                word_heap.insert(newEntry);
+                Entry newEntry = Entry(word);  
+                int resultIdx = word_heap.insert(newEntry, found);
+                if(found > 0) {
+                    idx_table.changeContent(word, resultIdx);
+                } else {
+                    idx_table.insert(word, resultIdx);
+                }       
             }
         }
     } else {
@@ -62,7 +75,8 @@ int main(int argc, const char* argv[]) {
                 word_heap.printHeap();
                 break;
             case '2':
-                cout << "Case 2" << endl;
+                cout << "-------------------------" << endl;
+                idx_table.printHashTable();
                 break;
             case '3':
                 cout << "Case 3" << endl;

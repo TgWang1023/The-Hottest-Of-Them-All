@@ -5,10 +5,10 @@ MinHeap::MinHeap() {
     size = 0;
 }
 
-void MinHeap::insert(Entry e) {
-    if(alreadyExist(e.getWord()) > 0) {
-        heap_arr[alreadyExist(e.getWord())].increment();
-        holdInvariant(alreadyExist(e.getWord()));
+int MinHeap::insert(Entry e, int exists) {
+    if(exists > 0) {
+        heap_arr[exists].increment();
+        return holdInvariant(exists);
     } else {
         heap_arr[size + 1] = e;
         int runner = size + 1;
@@ -23,16 +23,22 @@ void MinHeap::insert(Entry e) {
             }
         }
         size++;
+        return runner;
     }
 }
 
-void MinHeap::replaceMin(std::string new_word) {
-    if(alreadyExist(new_word) > 0) {
-        heap_arr[alreadyExist(new_word)].increment();
-        holdInvariant(alreadyExist(new_word));
+int MinHeap::replaceMin(std::string new_word, int exists) {
+    if(exists > 0) {
+        heap_arr[exists].increment();
+        return holdInvariant(exists);
     } else {
         heap_arr[1].replace(new_word);
+        return 1;
     }
+}
+
+std::string MinHeap::getMin() {
+    return heap_arr[1].getWord();
 }
 
 void MinHeap::printHeap() {
@@ -45,16 +51,7 @@ int MinHeap::getSize() {
     return size;
 }
 
-int MinHeap::alreadyExist(std::string new_word) {
-    for(int i = 0; i < size; i++) {
-        if(heap_arr[i + 1].getWord() == new_word) {
-            return i + 1;
-        }
-    }
-    return -1;
-}
-
-void MinHeap::holdInvariant(int pos) {
+int MinHeap::holdInvariant(int pos) {
     int runner = pos;
     while(runner * 2 <= size) {
         int left = 2 * runner;
@@ -75,4 +72,5 @@ void MinHeap::holdInvariant(int pos) {
             break;
         }
     }
+    return runner;
 }

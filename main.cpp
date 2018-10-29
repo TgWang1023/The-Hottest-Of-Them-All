@@ -34,10 +34,10 @@ int main(int argc, const char* argv[]) {
             if (word_heap.getSize() >= 15) {
                 int resultIdx = word_heap.replaceMin(word, found);
                 if(found > 0) {
-                    idx_table.changeContent(word, word_heap.replaceMin(word, resultIdx));
+                    idx_table.changeContent(word, resultIdx);
                 } else {
                     idx_table.delEntry(word_heap.getMin());
-                    idx_table.insert(word, word_heap.replaceMin(word, resultIdx));
+                    idx_table.insert(word, resultIdx);
                 }
             } else {
                 Entry newEntry = Entry(word);  

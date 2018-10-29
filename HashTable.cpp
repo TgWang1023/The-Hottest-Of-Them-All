@@ -86,11 +86,8 @@ void HashTable::printHashTable() {
         HashElem* runner = table[i];
         while(runner->getIndex() > 0 && runner->getNext() != NULL) {
             std::cout << runner->getIndex() << " -> ";
-            if(runner->getNext() == NULL) {
-                std::cout << "NULL" << std::endl;
-                break;
-            } 
             runner = runner->getNext();
         }
+        std::cout << "NULL" << std::endl;
     }
 }

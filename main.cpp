@@ -32,7 +32,7 @@ int main(int argc, const char* argv[]) {
             word = convertToLower(word);
             int found = idx_table.searchTable(word);
             if (word_heap.getSize() >= 15) {
-                int resultIdx = word_heap.replaceMin(word, found);
+                int resultIdx = word_heap.replaceMin(word, found, idx_table);
                 if(found > 0) {
                     idx_table.changeContent(word, resultIdx);
                 } else {

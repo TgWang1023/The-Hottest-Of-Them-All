@@ -9,7 +9,7 @@ MinHeap::MinHeap() {
 int MinHeap::insert(Entry e, int exists, HashTable &h) {
     if(exists > 0) {
         heap_arr[exists].increment();
-        return holdInvariant(exists);
+        return holdInvariant(exists, h);
     } else {
         heap_arr[size + 1] = e;
         int runner = size + 1;
@@ -29,10 +29,10 @@ int MinHeap::insert(Entry e, int exists, HashTable &h) {
     }
 }
 
-int MinHeap::replaceMin(std::string new_word, int exists) {
+int MinHeap::replaceMin(std::string new_word, int exists, HashTable &h) {
     if(exists > 0) {
         heap_arr[exists].increment();
-        return holdInvariant(exists);
+        return holdInvariant(exists, h);
     } else {
         heap_arr[1].replace(new_word);
         return 1;
@@ -53,7 +53,7 @@ int MinHeap::getSize() {
     return size;
 }
 
-int MinHeap::holdInvariant(int pos) {
+int MinHeap::holdInvariant(int pos, HashTable &h) {
     int runner = pos;
     while(runner * 2 <= size) {
         int left = 2 * runner;
@@ -63,11 +63,13 @@ int MinHeap::holdInvariant(int pos) {
                 Entry temp = heap_arr[left];
                 heap_arr[left] = heap_arr[runner];
                 heap_arr[runner] = temp;
+                h.changeContent(heap_arr[runner].getWord(), runner);
                 runner = runner * 2;
             } else {
                 Entry temp = heap_arr[right];
                 heap_arr[right] = heap_arr[runner];
                 heap_arr[runner] = temp;
+                h.changeContent(heap_arr[runner].getWord(), runner);
                 runner = runner * 2 + 1;
             }
         } else {

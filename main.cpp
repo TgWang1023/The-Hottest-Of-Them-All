@@ -1,3 +1,4 @@
+#include <iostream>
 #include <fstream>
 #include "MinHeap.h"
 #include "HashTable.h"
@@ -67,21 +68,44 @@ int main(int argc, const char* argv[]) {
         cin >> choice;
 
         switch(choice) {
-            case '1':
+            case '1': {
                 cout << "-------------------------" << endl;
                 word_heap.printHeap();
                 break;
-            case '2':
+            }
+            case '2': {
                 cout << "-------------------------" << endl;
                 idx_table.printHashTable();
                 break;
-            case '3':
-                cout << "Case 3" << endl;
+            }
+            case '3': {
+                string input;
+                cout << "Please enter the word you would like to add: ";
+                cin.ignore();
+                getline(cin, input);
+                input = convertToLower(input);
+                int found = idx_table.searchTable(input);
+                if (word_heap.getSize() >= 15) {
+                    int resultIdx = word_heap.replaceMin(input, found, idx_table);
+                    if(found > 0) {
+                        idx_table.changeContent(input, resultIdx);
+                    }
+                } else {
+                    Entry newEntry = Entry(input);  
+                    int resultIdx = word_heap.insert(newEntry, found, idx_table);
+                    if(found > 0) {
+                        idx_table.changeContent(input, resultIdx);
+                    } else {
+                        idx_table.insert(input, resultIdx);
+                    }       
+                }
                 break;
-            case '0':
+            }
+            case '0': {
                 cout << "Goodbye" << endl;
                 word_file.close();
                 exit(0);
+            }
             default:
                 cout << "Please enter 1, 2 or 3 to perform an action or 0 to quit" << endl;
         }

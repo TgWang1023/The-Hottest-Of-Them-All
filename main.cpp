@@ -35,9 +35,6 @@ int main(int argc, const char* argv[]) {
                 int resultIdx = word_heap.replaceMin(word, found, idx_table);
                 if(found > 0) {
                     idx_table.changeContent(word, resultIdx);
-                } else {
-                    idx_table.delEntry(word_heap.getMin());
-                    idx_table.insert(word, resultIdx);
                 }
             } else {
                 Entry newEntry = Entry(word);  

@@ -56,7 +56,7 @@ void HashTable::delEntry(std::string word) {
         HashElem* prev_runner = table[idx];
         HashElem* runner = table[idx];
         if(runner->getWord() == word) {
-            runner->setNext(NULL);
+            table[idx] = runner->getNext();
         } else {
             while(runner != NULL) {
                 runner = runner->getNext();

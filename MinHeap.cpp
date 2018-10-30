@@ -34,7 +34,9 @@ int MinHeap::replaceMin(std::string new_word, int exists, HashTable &h) {
         heap_arr[exists].increment();
         return holdInvariant(exists, h);
     } else {
+        h.delEntry(heap_arr[1].getWord());
         heap_arr[1].replace(new_word);
+        h.insert(new_word, 1);
         return 1;
     }
 }
